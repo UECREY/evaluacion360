@@ -1,9 +1,9 @@
 <?php
 // Include configuration file
-require_once 'config.php';
+require_once '../admin/lib/helpers/config.php';
 
 // Include User library file
-require_once 'User.class.php';
+require_once '../admin/lib/helpers/User.class.php';
 
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);

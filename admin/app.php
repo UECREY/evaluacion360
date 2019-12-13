@@ -133,6 +133,15 @@
             <nav class="nav-sub">
              
               <a href="#" id="boton" class="nav-sub-link active">Indicadores</a>
+              <a href="#" id="botonCategoria" class="nav-sub-link active">Categorías </a>
+              <a href="#" id="botonCargos" class="nav-sub-link active">Cargos </a>
+              <a href="#" id="botonOpciones" class="nav-sub-link active">Opciones Respuesta </a>
+              <a href="#" id="botonJerarquia" class="nav-sub-link active">Jerarquia </a>
+
+
+
+
+
              
             </nav>
           </li><!-- nav-item -->
@@ -236,6 +245,19 @@
         
        $("#boton").click(function(event) {
           $("#capa").load('indicadores.php');
+        });
+         $("#botonCategoria").click(function(event) {
+          $("#capa").load('categorias.php');
+        });
+           $("#botonCargos").click(function(event) {
+          $("#capa").load('cargos.php');
+        });
+           $("#botonOpciones").click(function(event) {
+          $("#capa").load('opciones.php');
+        });
+
+           $("#botonJerarquia").click(function(event) {
+          $("#capa").load('jerarquia.php');
         });
       });
 

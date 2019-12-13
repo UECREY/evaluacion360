@@ -1,6 +1,6 @@
 <?php
 // Include configuration file
-require_once 'config.php';
+require_once '../admin/lib/helpers/config.php';
 
 // Remove token and user data from the session
 unset($_SESSION['token']);

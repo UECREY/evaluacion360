@@ -40,7 +40,7 @@ ini_set('display_startup_errors', TRUE);
     <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
     <meta name="author" content="ThemePixels">
 
-    <title>Indicadores</title>
+    <title>Categorías</title>
 
     <!-- vendor css -->
   
@@ -59,8 +59,8 @@ ini_set('display_startup_errors', TRUE);
          
           
 
-          <div class="az-content-label mg-b-5">Indicaodores</div>
-          <p class="mg-b-20">Indicadores ingresados en el sistema</p>
+          <div class="az-content-label mg-b-5">Categorías</div>
+          <p class="mg-b-20">Categorías ingresadas en el sistema</p>
 
           <table id="datatable1" class="display responsive nowrap">
              <br />
@@ -79,7 +79,7 @@ ini_set('display_startup_errors', TRUE);
               <tr>
 
                 <th class="wd-15p">Detalle </th>
-                <th class="wd-15p">Categoría </th>
+          
 
                
                 <th class="wd-5p">Modificar </th>
@@ -93,13 +93,13 @@ ini_set('display_startup_errors', TRUE);
             </tbody>
           </table>
 
-        
+          
 
         </div><!-- az-content-body -->
       </div>
     </div><!-- az-content -->
 
-    
+ 
 
   
     <script src="../template/template/lib/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -121,7 +121,7 @@ var dataTable = $('#datatable1').DataTable({
 
       "order":[],
     "ajax": {
-    "url": "lib/server/fetchIndicadores.php",
+    "url": "lib/server/fetchCategorias.php",
     "type": "POST"
     },          
     
@@ -170,36 +170,34 @@ var dataTable = $('#datatable1').DataTable({
 
  });
 $('#add_button').click(function(){
-  $('#indicador_form')[0].reset();
-  $('.modal-title').text("Añadir Indicadores");
-  $('#action').val("Guardar");
-  $('#operation').val("Guardar");
+  $('#categoria_form')[0].reset();
+  $('.modal-title').text("Categorías");
+  $('#action').val("Guardar Categoria");
+  $('#operation').val("Guardar Categoria");
   $('#user_uploaded_image').html('');
-  $('.selectpicker').selectpicker();
-  $('.col-sm-4.date').datepicker({
-    format: 'yyyy-mm-dd',
+  //$('.selectpicker').selectpicker();
  
-});
  });
- $(document).on('submit', '#indicador_form', function(event){
+ $(document).on('submit', '#categoria_form', function(event){
   event.preventDefault();
-  $('.select2').select2({
-            placeholder: 'Seleccione la categoría'
-          });
-  var detalleIndicador= $('#detalleIndicador').val();
-  var idCategoria= $('#idCategoria').val();
-    if(detalleIndicador != '' && idCategoria != '')
+
+  var detalleCategoria= $('#detalleCategoria').val();
+  
+    if(detalleCategoria!= '')
   {
    $.ajax({
-    url:"lib/sever/insert.php",
+    url:"insert.php",
     method:'POST',
     data:new FormData(this),
     contentType:false,
     processData:false,
     success:function(data)
     {
-     alert(data);
-     $('#indicador_form')[0].reset();
+   //  alert(data);{}
+
+    $("#modaldemo4").modal();
+
+     $('#categoria_form')[0].reset();
      $('#userModal').modal('hide');
      dataTable.ajax.reload();
          //location.reload();
@@ -216,16 +214,15 @@ $('#add_button').click(function(){
   var user_id = $(this).attr("id");
  //  alert("Ingresa");
   $.ajax({
-   url:"lib/server/fetchIndicadoresSingle.php",
+   url:"lib/server/fetchCategoriasSingle.php",
    method:"POST",
    data:{user_id:user_id},
    dataType:"json",
    success:function(data)
    {
     $('#userModal').modal('show');
-    $('#detalleIndicador').val(data.detalleIndicador);
-    var $example = $(".select2").select2();
-     $example.val(data.idCategoria).trigger("change");
+    $('#detalleCategoria').val(data.detalleCategoria);
+   
 //$('#idCategoria option[value='+data.idCategoria+']').attr("selected",true);
  //   $('#idCategoria').select2('COMPETENCIA');
 
@@ -254,10 +251,10 @@ $('#add_button').click(function(){
 
 
 
-    $('.modal-title').text("Edit User");
+    $('.modal-title').text("Editar Categoría");
     $('#user_id').val(user_id);
-    $('#action').val("Edit");
-    $('#operation').val("Edit");
+    $('#action').val("Editar Categoria");
+    $('#operation').val("Editar Categoria");
    }
   })
  });
@@ -286,32 +283,20 @@ $('#add_button').click(function(){
               <button type="button" class="close pos-absolute t-15 r-20 tx-26" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <form class="parsley-style-1"  method="post" id='indicador_form'>
-               <h5 class="modal-title mg-b-5">Indicadores</h5>
+            <form class="parsley-style-1"  method="post" id='categoria_form'>
+               <h5 class="modal-title mg-b-5">Categorías</h5>
         
              <div class="form-group">
-              <input type="text" class="form-control" placeholder="Detalle Indicador" id="detalleIndicador" name="detalleIndicador" required="">
+              <input type="text" class="form-control" placeholder="Detalle Catgoría" id="detalleCategoria" name="detalleCategoria" required="">
             </div><!-- form-group -->
-            <div class="form-group">
-
-               <select class="form-control select2" data-placeholder="Seleccione la categoría" data-parsley-class-handler="#slWrapper2" name="idCategoria" id="idCategoria"data-parsley-errors-container="#slErrorContainer2" required>
-                <?php 
-
-                       while ($infoCategoria=$categoria->fetch_assoc())
-                       {
-                        echo '    <option value='.$infoCategoria['idCategoria'].'> '.$infoCategoria['detalleCategoria'].'</option>';
-                       }
-                 ?>
-              
-              </select>
-            </div><!-- form-group -->
+            
           <!-- parsley-checkbox -->
             
 <input type="hidden" name="user_id" id="user_id" />
      <input type="hidden" name="operation" id="operation" />
             <div class="mg-t-30">
                  <!--<input type="submit" name="action" id="action" class="btn btn-success" value="Guardar" />-->
-              <button type="submit" id="action" class="btn btn-az-primary pd-x-20" value="Guardar">Guardar</button>
+              <button type="submit" id="action" class="btn btn-az-primary pd-x-20" value="Guardar Categoria">Guardar</button>
             </div>
           </form>
            
@@ -321,5 +306,20 @@ $('#add_button').click(function(){
             <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
           </div>
         </div>
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+  <div id="modaldemo4" class="modal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content tx-size-sm">
+          <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="icon ion-ios-checkmark-circle-outline tx-100 tx-success lh-1 mg-t-20 d-inline-block"></i>
+            <h4 class="tx-success tx-semibold mg-b-20">Ok</h4>
+            <p class="mg-b-20 mg-x-20">Datos guardados</p>
+            <button type="button" class="btn btn-success pd-x-25" data-dismiss="modal" aria-label="Close">Continue</button>
+          </div><!-- modal-body -->
+        </div><!-- modal-content -->
       </div><!-- modal-dialog -->
     </div><!-- modal -->

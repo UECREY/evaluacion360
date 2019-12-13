@@ -76,7 +76,7 @@ class User {
     {
         //echo $serial_alu;
    
-        $checkIndicadores = "SELECT idindicador , detalleIndicador from indicador";
+        $checkIndicadores = "SELECT idindicador , detalleIndicador, categoria.detalleCategoria from indicador, categoria where categoria.idCategoria=indicador.idCategoria";
         //echo $checkCursoAlu;
       //  echo $checkIndicadores;
         $checkIndi= $this->db->query($checkIndicadores);
@@ -85,6 +85,21 @@ class User {
   
     
     return $checkIndi;
+    }
+
+    function indicadoresMostrarSingle($user_id)
+    {
+        //echo $serial_alu;
+   
+        $checkIndicadores = "SELECT idindicador , detalleIndicador,idCategoria from indicador where idindicador='".$user_id."'";
+        //echo $checkCursoAlu;
+      // echo $checkIndicadores;
+        $checkIndi= $this->db->query($checkIndicadores);
+    
+ 
+  
+    
+       return $checkIndi;
     }
     function docentesAlumno($serial_par)
     {
@@ -119,6 +134,17 @@ class User {
     	$querySIndicadores="INSERT INTO indicador(detalleIndicador,idCategoria) VALUES('".$detalleIndicador."','".$idCategoria."') ";
     	$querySIndicadores= $this->db->query($querySIndicadores);
     }
+    function actualizarIndicadores($user_id,$detalleIndicador,$idCategoria)
+    {
+    	  $query = "UPDATE indicador SET detalleIndicador='".$detalleIndicador."', idCategoria='".$idCategoria."' WHERE idindicador='".$user_id."'";
+
+                $update = $this->db->query($query);
+                if(!empty($query))
+                {
+                	 echo "Datos actualizados";
+                }
+    }
+
 
     function opcionesRespuestas()
     {
