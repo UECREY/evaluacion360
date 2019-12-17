@@ -137,6 +137,8 @@
               <a href="#" id="botonCargos" class="nav-sub-link active">Cargos </a>
               <a href="#" id="botonOpciones" class="nav-sub-link active">Opciones Respuesta </a>
               <a href="#" id="botonJerarquia" class="nav-sub-link active">Jerarquia </a>
+              <a href="#" id="botonRelacion" class="nav-sub-link active">Relación Dependencia </a>
+
 
 
 
@@ -146,7 +148,7 @@
             </nav>
           </li><!-- nav-item -->
           <li class="nav-item">
-            <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i>Opción2</a>
+             <!-- <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i>Opción2</a>-->
             <nav class="nav-sub">
              <!-- <a href="app-mail.html" class="nav-sub-link">Mailbox</a>
               <a href="app-chat.html" class="nav-sub-link">Chat</a>
@@ -160,7 +162,7 @@
             </nav>
           </li><!-- nav-item -->
           <li class="nav-item">
-            <a href="" class="nav-link with-sub"><i class="typcn typcn-book"></i>Opcion 3 </a>
+           <!-- <a href="" class="nav-link with-sub"><i class="typcn typcn-book"></i>Opcion 3 </a>-->
             <nav class="nav-sub">
                 <!--<a href="elem-accordion.html" class="nav-sub-link">Accordion</a>
               <a href="elem-alerts.html" class="nav-sub-link">Alerts</a>
@@ -176,7 +178,7 @@
             </nav>
           </li><!-- nav-item -->
           <li class="nav-item">
-            <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Opción 3 </a>
+           <!-- <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Opción 3 </a>-->
             <nav class="nav-sub">
               <!--<a href="form-elements.html" class="nav-sub-link">Form Elements</a>
               <a href="form-layouts.html" class="nav-sub-link">Form Layouts</a>
@@ -186,7 +188,7 @@
             </nav>
           </li><!-- nav-item -->
           <li class="nav-item">
-            <a href="" class="nav-link with-sub"><i class="typcn typcn-chart-bar-outline"></i>Reportes</a>
+            <!--<a href="" class="nav-link with-sub"><i class="typcn typcn-chart-bar-outline"></i>Reportes</a>-->
             <nav class="nav-sub">
               <!--<a href="chart-morris.html" class="nav-sub-link">Morris Charts</a>
               <a href="chart-flot.html" class="nav-sub-link">Flot Charts</a>
@@ -258,6 +260,10 @@
 
            $("#botonJerarquia").click(function(event) {
           $("#capa").load('jerarquia.php');
+        });
+
+               $("#botonRelacion").click(function(event) {
+          $("#capa").load('relacionDependencia.php');
         });
       });
 
