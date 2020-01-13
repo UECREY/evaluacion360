@@ -138,6 +138,8 @@
               <a href="#" id="botonOpciones" class="nav-sub-link active">Opciones Respuesta </a>
               <a href="#" id="botonJerarquia" class="nav-sub-link active">Jerarquia </a>
               <a href="#" id="botonRelacion" class="nav-sub-link active">Relación Dependencia </a>
+              <a href="#" id="botonUsuarios" class="nav-sub-link active">Personal Institucion </a>
+
 
 
 
@@ -264,6 +266,10 @@
 
                $("#botonRelacion").click(function(event) {
           $("#capa").load('relacionDependencia.php');
+        });
+
+                 $("#botonUsuarios").click(function(event) {
+          $("#capa").load('usuarios.php');
         });
       });
 
